@@ -1,0 +1,49 @@
+.red {
+  list-style-type:none;
+}
+
+.red:before {
+  color:#BB0000;
+  font-weight:bold;
+  font-size:130%;
+  margin-right:1ex;
+  content:"\2718";
+}
+
+.amber {
+  list-style-type:none;
+}
+
+.amber:before {
+  color:#FFBF00;
+  font-weight:bold;
+  font-size:130%;
+  margin-right:1ex;
+  content:"\26A0";
+}
+
+.green {
+  list-style-type:none;
+}
+
+.green:before {
+  color:#00AA00;
+  font-weight:bold;
+  font-size:130%;
+  margin-right:1ex;
+  content:"\2714";
+}
+
+div.field:nth-child(3) {
+  position:absolute;
+  left:12ex;
+  top:0;
+}
+
+#entry_user {
+  width:10ex;
+}
+
+#entry_content {
+  width:80ex;
+}

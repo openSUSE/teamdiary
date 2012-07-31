@@ -1,0 +1,30 @@
+<%= form_for(@entry) do |f| %>
+  <% if @entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+      <ul>
+      <% @entry.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div style="position:relative;">
+  <div class="field">
+    Who you are<br />
+    <%= f.text_field :user, :tabindex => 1 %>
+  </div>
+  <div class="field">
+    <%= f.label :color %><br />
+    <%= f.select( :color, %w[green amber red], {:include_blank => false}, :tabindex => 3) %>
+  </div>
+  <div class="field">
+    What you did<br />
+    <%= f.text_field :content, :autofocus => true, :tabindex => 2 %>
+  </div>
+  <div class="actions">
+    <%= f.submit :tabindex => 4 %>
+  </div> 
+</div>
+<% end %>
