@@ -1,11 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing entries</h1>
-
 <%= @entry = Entry.new; @entry.user = cookies[:user_name]; render :partial => 'form' %>
 
 <% @entries.sort.reverse.each do |date, users| %>
-<h2><%= date %></h2>
+<h2><%= date.to_date.strftime('%A, %-d. %B %Y') %></h2>
 
 <% users.sort.each do |user, entries| %>
 <h3><%= user %></h3>
@@ -17,7 +15,10 @@
              truncate(text, :length => 30, :separator => '/', :omission => '/…')
            end
        %>
-       (<%= link_to 'Edit', edit_entry_path(entry) %>|<%= link_to 'Destroy', entry, confirm: 'Are you sure?', method: :delete %>)
+       <span class="tools">
+         <%= link_to '&#x232b;'.html_safe, entry, confirm: 'Are you sure?', method: :delete %>
+         <%= link_to '&#x270e;'.html_safe, edit_entry_path(entry) %>
+       </span>
      </li>
    <% end %>
 </ul>
