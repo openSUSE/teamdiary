@@ -1,6 +1,20 @@
+$os_green1:          #669900;
+$os_bggrey:          #F6F6F6;
+$os_lightshadowgrey: #CCCCCC; 
+$os_darkshadowgrey:  #222222; 
+$os_darkgrey:        #444444;
+$os_blue1:           #006699;
+$os_blue2:           #3399CC;
+
+@mixin border-radius {
+  -webkit-border-radius:5px 5px 5px 5px;
+  -moz-border-radius:5px 5px 5px 5px;
+  border-radius:5px 5px 5px 5px;
+}
+
 body {
-  background-color: #EEE;
-  color: #333;
+  background-color: $os_bggrey;
+  color: $os_darkgrey;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
 }
@@ -8,15 +22,13 @@ body {
 #wrapper { 
   margin: 0 auto;
   width: 922px;
-  color: #333;
-  border: 1px solid #bbb;
-  box-shadow: 0 0 12px #999999;
+  color: $os_darkgrey;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #DDDDDD #CCCCCC #BBBBBB;
+  box-shadow: 0 1px 3px $os_lightshadowgrey;
   background: #FFF;
-  -webkit-border-top-left-radius:5px;
-  -webkit-border-top-right-radius:5px;
-  -moz-border-radius:5px 5px 0px 0px;
-  border-top-left-radius:5px;
-  border-top-right-radius:5px;
+  @include border-radius;
 }
 
 #content { 
@@ -27,38 +39,35 @@ body {
 }
 
 h1 {
-  background-color:#669900;
-  color:#FFF;
-  margin:0;
-  padding:15px;
-  border-bottom:1px solid #bbb;
-  text-shadow: 0 0 4px #444444;
-  -webkit-border-top-left-radius:5px;
-  -webkit-border-top-right-radius:5px;
-  -moz-border-radius:5px 5px 0px 0px;
-  border-top-left-radius:5px;
-  border-top-right-radius:5px;
+  background-color: $os_green1;
+  color: #FFFFFF;
+  margin: 0;
+  padding: 15px;
+  border-bottom: 1px solid #bbb;
+  text-shadow: 0 0 4px $os_darkshadowgrey;
+  -webkit-border-radius:5px 5px 0 0;
+  -moz-border-radius:5px 5px 0 0;
+  border-radius:5px 5px 0 0;
 }
 
 pre {
-  background-color: #eee;
+  background-color: $os_bggrey;
   padding: 10px;
   font-size: 11px; }
 
 a {
-  color: #000;
+  color: $os_blue1;
   &:visited {
-    color: #666; }
+    color: $os_blue1; }
   &:hover {
-    color: #fff;
-    background-color: #000; } }
+    color: $os_blue2; } }
 
 div {
   &.field, &.actions {
     margin-bottom: 10px; } }
 
 #notice {
-  color: green; }
+  color: $os_green1; }
 
 .field_with_errors {
   padding: 2px;
