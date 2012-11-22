@@ -11,10 +11,7 @@
 <ul>
    <% entries.sort_by(&:created_at).reverse.each do |entry| %>
      <li class="<%= entry.color %>">
-       <%= auto_link(entry.content, :html => { :target => '_blank' }) do |text|
-             truncate(text, :length => 30, :separator => '/', :omission => '/…')
-           end
-       %>
+       <%= display_entry entry.content %>
        <span class="tools">
          <%= link_to '&#x232b;'.html_safe, entry, :confirm => 'Are you sure?', :method => :delete %>
          <%= link_to '&#x270e;'.html_safe, edit_entry_path(entry) %>
