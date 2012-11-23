@@ -45,6 +45,8 @@ module EntriesHelper
                entry.created_at.to_date - 
                (1 + entry.created_at.to_date.days_to_week_start(:monday)).days
                ).to_s(:db)))
+      text = text.gsub(/#yesterday/, link_to('#yesterday', '#' + (
+               entry.created_at.to_date - 1.day).to_s(:db)))
 
       # Render it
       text.html_safe
