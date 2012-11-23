@@ -17,35 +17,35 @@ module EntriesHelper
                        html_options = { :target => '_blank' }) )
 
       # Make day references work
-      text = text.gsub(/#monday/, link_to('#monday', '#' + (
+      text = text.gsub(/(#monday)/i,    link_to('\1', '#' + (
                entry.created_at.to_date - 
                (1 + entry.created_at.to_date.days_to_week_start(:tuesday)).days
                ).to_s(:db)))
-      text = text.gsub(/#tuesday/, link_to('#tuesday', '#' + (
+      text = text.gsub(/(#tuesday)/i,   link_to('\1', '#' + (
                entry.created_at.to_date - 
                (1 + entry.created_at.to_date.days_to_week_start(:wednesday)).days
                ).to_s(:db)))
-      text = text.gsub(/#wednesday/, link_to('#wednesday', '#' + (
+      text = text.gsub(/(#wednesday)/i, link_to('\1', '#' + (
                entry.created_at.to_date - 
                (1 + entry.created_at.to_date.days_to_week_start(:thursday)).days
                ).to_s(:db)))
-      text = text.gsub(/#thursday/, link_to('#thursday', '#' + (
+      text = text.gsub(/(#thursday)/i,  link_to('\1', '#' + (
                entry.created_at.to_date - 
                (1 + entry.created_at.to_date.days_to_week_start(:friday)).days
                ).to_s(:db)))
-      text = text.gsub(/#friday/, link_to('#friday', '#' + (
+      text = text.gsub(/(#friday)/i,    link_to('\1', '#' + (
                entry.created_at.to_date - 
                (1 + entry.created_at.to_date.days_to_week_start(:saturday)).days
                ).to_s(:db)))
-      text = text.gsub(/#saturday/, link_to('#saturday', '#' + (
+      text = text.gsub(/(#saturday)/i,  link_to('\1', '#' + (
                entry.created_at.to_date - 
                (1 + entry.created_at.to_date.days_to_week_start(:sunday)).days
                ).to_s(:db)))
-      text = text.gsub(/#sunday/, link_to('#sunday', '#' + (
+      text = text.gsub(/(#sunday)/i,    link_to('\1', '#' + (
                entry.created_at.to_date - 
                (1 + entry.created_at.to_date.days_to_week_start(:monday)).days
                ).to_s(:db)))
-      text = text.gsub(/#yesterday/, link_to('#yesterday', '#' + (
+      text = text.gsub(/(#yesterday)/i, link_to('\1', '#' + (
                entry.created_at.to_date - 1.day).to_s(:db)))
 
       # Render it
