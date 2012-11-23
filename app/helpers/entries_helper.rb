@@ -3,8 +3,9 @@ module EntriesHelper
       text = h entry.content
 
       # Make links work and truncate the long ones
-      text = auto_link(text, :html => { :target => '_blank' })
-      text = truncate(text, :length => 30, :separator => '/', :omission => '/...' )
+      text = auto_link(text, :html => { :target => '_blank' }) do |i|
+         text = truncate(i, :length => 30, :separator => '/', :omission => '/...' )
+      end
 
       # Make bnc# and fate# work
       text = text.gsub(/bnc#([0-9]+)/,
