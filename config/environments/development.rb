@@ -34,4 +34,7 @@ Teamdiary::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Diary name
+  config.diaryname = "Development version of diary"
 end

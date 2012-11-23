@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>openSUSE TeamDiary</title>
+  <title><%= Rails.application.config.diaryname %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <div id="wrapper">
-    <h1>openSUSE TeamDiary</h1>  
+    <h1><%= Rails.application.config.diaryname %></h1>  
     <div id="content">
       <%= yield %>
     </div>
