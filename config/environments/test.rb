@@ -34,4 +34,7 @@ Teamdiary::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # Diary name
+  config.diaryname = "Testing version of diary"
 end
