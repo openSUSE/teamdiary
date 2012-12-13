@@ -52,6 +52,9 @@ Teamdiary::Application.routes.draw do
   # just remember to delete public/index.html.
   root :to => 'entries#index'
 
+  match "/auth/:provider/callback" => "sessions#create"
+  match "/signout" => "sessions#destroy", :as => :signout
+
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
