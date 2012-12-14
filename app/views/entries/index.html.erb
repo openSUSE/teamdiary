@@ -16,7 +16,7 @@
            end
        %>
        <span class="tools">
-         <%= link_to '&#x232b;'.html_safe, entry, :confirm => 'Are you sure?', :method => :delete %>
+         <%= link_to '&#x232b;'.html_safe, entry, :data => { :confirm => 'Are you sure?' }, :method => :delete %>
          <%= link_to '&#x270e;'.html_safe, edit_entry_path(entry) %>
        </span>
      </li>
