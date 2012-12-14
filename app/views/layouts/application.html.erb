@@ -10,10 +10,7 @@
   <div id="wrapper">
     <h1>openSUSE TeamDiary</h1>  
     <% if current_user %>
-      Welcome <%= current_user.name %>!
-      <%= link_to "Sign Out", signout_path %>
-    <% else %>
-      <%= link_to "Sign in with OpenID", "/auth/open_id" %>
+      <div id="signout"><%= link_to "Sign Out", signout_path %></div>
     <% end %>
     <div id="content">
       <%= yield %>

@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= @entry = Entry.new; @entry.user = cookies[:user_name]; render :partial => 'form' %>
+<%= @entry = Entry.new; render :partial => 'form' %>
 
 <% @entries.sort.reverse.each do |date, users| %>
 <h2><%= date.to_date.strftime('%A, %-d. %B %Y') %></h2>

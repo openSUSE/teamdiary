@@ -12,19 +12,15 @@
   <% end %>
 <div style="position:relative;">
   <div class="field">
-    Who you are<br />
-    <%= f.text_field :user, :tabindex => 1 %>
-  </div>
-  <div class="field">
     <%= f.label :color %><br />
-    <%= f.select( :color, %w[green amber red], {:include_blank => false}, :tabindex => 3) %>
+    <%= f.select( :color, %w[green amber red], {:include_blank => false}, :tabindex => 2) %>
   </div>
   <div class="field">
-    What you did<br />
-    <%= f.text_field :content, :autofocus => true, :tabindex => 2 %>
+    <%= current_user.name %>, what did you do?<br />
+    <%= f.text_field :content, :autofocus => true, :tabindex => 1 %>
   </div>
   <div class="actions">
-    <%= f.submit :tabindex => 4 %>
+    <%= f.submit :tabindex => 3 %>
   </div> 
 </div>
 <% end %>
