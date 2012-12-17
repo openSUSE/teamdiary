@@ -8,8 +8,14 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-    @tmp = Entry.all.group_by { |entry| entry.created_at.strftime("%F") }
-    @entries = @tmp.inject({}) { |h, (day, entries)| h[day] = entries.group_by(&:user); h }
+    if params && params[:month] && params[:year]
+      @limit_date = Date.new(params[:year].to_i, params[:month].to_i, 1)
+      tmp = Entry.where('created_at >= ?', @limit_date.beginning_of_month()).where('created_at <= ?', @limit_date.end_of_month()).group_by { |entry| entry.created_at.strftime("%F") }
+    else
+      @limit_date = Date.today.beginning_of_month()
+      tmp = Entry.where('created_at >= ?', 1.month.ago).all.group_by { |entry| entry.created_at.strftime("%F") }
+    end
+    @entries = tmp.inject({}) { |h, (day, entries)| h[day] = entries.group_by(&:user); h }
 
     respond_to do |format|
       format.html # index.html.erb
