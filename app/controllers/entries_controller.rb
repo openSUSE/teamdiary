@@ -1,4 +1,10 @@
 class EntriesController < ApplicationController
+  before_filter :force_auth
+
+  def force_auth
+    redirect_to '/auth/open_id' unless current_user
+  end
+
   # GET /entries
   # GET /entries.json
   def index
@@ -27,8 +33,6 @@ class EntriesController < ApplicationController
   def new
     @entry = Entry.new
 
-    @entry.user = cookies[:user_name]
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @entry }
@@ -44,8 +48,7 @@ class EntriesController < ApplicationController
   # POST /entries.json
   def create
     @entry = Entry.new(params[:entry])
-
-    cookies[:user_name] = @entry.user
+    @entry.user = current_user.name
 
     respond_to do |format|
       if @entry.save

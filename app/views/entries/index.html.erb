@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= @entry = Entry.new; @entry.user = cookies[:user_name]; render :partial => 'form' %>
+<%= @entry = Entry.new; render :partial => 'form' %>
 
 <% @entries.sort.reverse.each do |date, users| %>
 <h2 ref="<%= date.to_date.to_s(:db) %>"><%= date.to_date.strftime('%A, %-d. %B %Y') %></h2>
@@ -13,7 +13,7 @@
      <li class="<%= entry.color %>">
        <%= display_entry entry %>
        <span class="tools">
-         <%= link_to '&#x232b;'.html_safe, entry, :confirm => 'Are you sure?', :method => :delete %>
+         <%= link_to '&#x232b;'.html_safe, entry, :data => { :confirm => 'Are you sure?' }, :method => :delete %>
          <%= link_to '&#x270e;'.html_safe, edit_entry_path(entry) %>
        </span>
      </li>

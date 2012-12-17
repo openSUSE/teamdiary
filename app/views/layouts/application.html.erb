@@ -9,6 +9,9 @@
 <body>
   <div id="wrapper">
     <h1><%= Rails.application.config.diaryname %></h1>  
+    <% if current_user %>
+      <div id="signout"><%= link_to "Sign Out", signout_path %></div>
+    <% end %>
     <div id="content">
       <%= yield %>
     </div>
