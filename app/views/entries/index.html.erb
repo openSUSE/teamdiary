@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <%= @entry = Entry.new; render :partial => 'form' %>
+<% delete_path = link_to('&#x232b;'.html_safe, entry_path('REPLACE'), :data => { :confirm => 'Are you sure?' }, :method => :delete, class: 'delete-entries-link') %>
+<% entry_path = link_to '&#x270e;'.html_safe, edit_entry_path('REPLACE') %>
 
 <% @entries.sort.reverse.each do |date, users| %>
 <h2 ref="<%= date.to_date.to_s(:db) %>"><%= date.to_date.strftime('%A, %-d. %B %Y') %></h2>
@@ -11,13 +13,14 @@
 <ul>
    <% entries.sort_by(&:created_at).reverse.each do |entry| %>
      <li class="<%= entry.color %>">
-       <%= display_entry entry %>
-       <span class="tools">
-         <%= link_to '&#x232b;'.html_safe, entry, :data => { :confirm => 'Are you sure?' }, :method => :delete %>
-         <%= link_to '&#x270e;'.html_safe, edit_entry_path(entry) %>
-       </span>
+       <%= display_entry entry -%>
+       <%= content_tag(:span, class: "tools", data: { entry: entry.id }) do -%>
+         <%= delete_path.gsub('REPLACE', entry.id.to_s).html_safe %>
+         <%= entry_path.gsub('REPLACE', entry.id.to_s).html_safe  %>
+       <% end -%>
      </li>
    <% end %>
 </ul>
 <% end %>
 <% end %>
+
