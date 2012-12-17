@@ -1,6 +1,40 @@
 <p id="notice"><%= notice %></p>
 
+<!-- Paging via months -->
+<p><%
+
+total = 5  # How many months do we want to see?
+
+# How many months can we display before the current on without going
+# to the future, but let's limit it up to the half of the months displayed
+
+total -= 1 # One month is current month
+before = [[
+   ((Date.today.end_of_month() - @limit_date.end_of_month()).to_i/30).round.to_i, 0].max,
+   (total/2).round.to_i].min
+
+# if there is anything to display, diplay it
+if before > 0
+   for i in 1..before do
+      i_date = @limit_date + (before-i+1).months
+      %> <%= link_to(i_date.strftime('%B %Y'), entries_path(:month => i_date.month, :year => i_date.year)) %> <%
+   end
+end
+
+# Display currently selected month
+%> <%= @limit_date.strftime('%B %Y') %> <%
+
+# Diplay past months
+for i in 1..(total-before) do
+   i_date = @limit_date - (i).months
+   %> <%= link_to(i_date.strftime('%B %Y'), entries_path(:month => i_date.month, :year => i_date.year)) %> <%
+end
+%></p>
+
 <%= @entry = Entry.new; render :partial => 'form' %>
+<% delete_path = link_to('&#x232b;'.html_safe, entry_path('REPLACE'), :data => { :confirm => 'Are you sure?' }, :method => :delete, class: 'delete-entries-link') %>
+<% entry_path = link_to '&#x270e;'.html_safe, edit_entry_path('REPLACE') %>
+
 
 <% @entries.sort.reverse.each do |date, users| %>
 <h2 ref="<%= date.to_date.to_s(:db) %>"><%= date.to_date.strftime('%A, %-d. %B %Y') %></h2>
@@ -11,13 +45,14 @@
 <ul>
    <% entries.sort_by(&:created_at).reverse.each do |entry| %>
      <li class="<%= entry.color %>">
-       <%= display_entry entry %>
-       <span class="tools">
-         <%= link_to '&#x232b;'.html_safe, entry, :data => { :confirm => 'Are you sure?' }, :method => :delete %>
-         <%= link_to '&#x270e;'.html_safe, edit_entry_path(entry) %>
-       </span>
+       <%= display_entry entry -%>
+       <%= content_tag(:span, class: "tools", data: { entry: entry.id }) do -%>
+         <%= delete_path.gsub('REPLACE', entry.id.to_s).html_safe %>
+         <%= entry_path.gsub('REPLACE', entry.id.to_s).html_safe  %>
+       <% end -%>
      </li>
    <% end %>
 </ul>
 <% end %>
 <% end %>
+
