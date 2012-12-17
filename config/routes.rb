@@ -53,6 +53,7 @@ Teamdiary::Application.routes.draw do
   root :to => 'entries#index'
 
   match "/auth/:provider/callback" => "sessions#create"
+  match "/auth/failure" => "sessions#failure"
   match "/signout" => "sessions#destroy", :as => :signout
 
   # See how all your routes lay out with "rake routes"
