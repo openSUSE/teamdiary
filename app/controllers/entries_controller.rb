@@ -48,15 +48,19 @@ class EntriesController < ApplicationController
 
   # GET /entries/1/edit
   def edit
-    @multiline = true
     @entry = Entry.find(params[:id])
+
+    redirect_to( entry_path(@entry), :notice => "Sorry, you can only edit your own entries.") if @entry.user != current_user
+
+    @multiline = true
+
   end
 
   # POST /entries
   # POST /entries.json
   def create
     @entry = Entry.new(params[:entry])
-    @entry.user = current_user.name
+    @entry.user = current_user
 
     respond_to do |format|
       if @entry.save
