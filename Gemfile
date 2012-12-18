@@ -29,6 +29,7 @@ gem 'faker'
 gem 'mysql2'
 
 gem 'rack-mini-profiler'
+gem 'redcarpet'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
