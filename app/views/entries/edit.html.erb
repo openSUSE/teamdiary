@@ -1,6 +1,8 @@
 <h2>Editing entry</h2>
 
-<%= render 'form' %>
+<%= render 'form', :locals => { :multiline => true } %>
 
+<%= link_to('Delete', @entry, :data => { :confirm => 'Are you sure?' }, :method => :delete) %>
 <%= link_to 'Show', @entry %> |
 <%= link_to 'Back', entries_path %>
+

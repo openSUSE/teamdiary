@@ -8,6 +8,7 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
+    @entry = Entry.new
     if params && params[:month] && params[:year]
       @limit_date = Date.new(params[:year].to_i, params[:month].to_i, 1)
       tmp = Entry.where('created_at >= ?', @limit_date.beginning_of_month()).where('created_at <= ?', @limit_date.end_of_month()).group_by { |entry| entry.created_at.strftime("%F") }
@@ -47,6 +48,7 @@ class EntriesController < ApplicationController
 
   # GET /entries/1/edit
   def edit
+    @multiline = true
     @entry = Entry.find(params[:id])
   end
 
