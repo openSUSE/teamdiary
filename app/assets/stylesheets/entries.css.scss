@@ -55,22 +55,29 @@ h3 {
   }
 }
 
-div.field:nth-child(2) {
-  position:absolute;
-  right:0;
-  top:0;
-}
+#entry_content { width: 100% }
 
-#entry_user {
-  width:90px;
-}
+.wrapperbox { 
+  position: relative; 
 
-#entry_content {
-  width:790px;
-}
+  div#contentbox {
+    position:absolute;
+    right:0;
+    top:0;
+  }
 
-.actions input {
-  position:absolute;
-  right: 0;
-  top:5em;
+  .actions input {
+    position:absolute;
+    right: 0;
+    top:5em;
+  }
+
+  #colorbox {
+    width:90px;
+  }
+
+  #entry_content {
+    width:790px;
+  }
+
 }
