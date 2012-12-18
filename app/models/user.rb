@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :provider, :uid
+  has_many :entries
 
   def self.from_omniauth(auth)
     User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || create_with_omniauth(auth)

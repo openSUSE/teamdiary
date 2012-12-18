@@ -39,8 +39,8 @@ end
 <% @entries.sort.reverse.each do |date, users| %>
 <h2 ref="<%= date.to_date.to_s(:db) %>"><%= date.to_date.strftime('%A, %-d. %B %Y') %></h2>
 
-<% users.sort.each do |user, entries| %>
-<h3><%= user %></h3>
+<% users.sort{|a,b| a[0].name <=> b[0].name }.each do |user, entries| %>
+<h3><%= user.name %></h3>
 
 <ul>
    <% entries.sort_by(&:created_at).reverse.each do |entry| %>

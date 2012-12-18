@@ -2,6 +2,7 @@ class Entry < ActiveRecord::Base
   attr_accessible :color, :content, :user
   before_validation :default_color, :on => :create
   before_validation :past_entry, :on => :create
+  belongs_to :user
 
   validates :user, :presence => true
   validates :content, :presence => true
