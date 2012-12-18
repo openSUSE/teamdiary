@@ -40,9 +40,9 @@ end
 <% users.sort{|a,b| a[0].name <=> b[0].name }.each do |user, entries| %>
 <h3><%= user.name %></h3>
 
-<ul>
+<ul class='entries'>
    <% entries.sort_by(&:created_at).reverse.each do |entry| %>
-     <li class="<%= entry.color %>">
+     <li class="<%= entry.color %> entries">
        <%= display_entry entry -%>
        <%= content_tag(:span, class: "tools", data: { entry: entry.id }) do -%>
          <%= entry_path.gsub('REPLACE', entry.id.to_s).html_safe  %>
