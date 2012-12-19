@@ -2,7 +2,7 @@ class EntriesController < ApplicationController
   before_filter :force_auth
 
   def force_auth
-    redirect_to '/auth/open_id' unless current_user
+    redirect_to '/auth/bugzilla' unless current_user
   end
 
   # GET /entries
