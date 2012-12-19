@@ -52,6 +52,7 @@ Teamdiary::Application.routes.draw do
   # just remember to delete public/index.html.
   root :to => 'entries#index'
 
+  match '/auth/:provider', as: 'auth'
   match "/auth/:provider/callback" => "sessions#create"
   match "/auth/failure" => "sessions#failure"
   match "/signout" => "sessions#destroy", :as => :signout

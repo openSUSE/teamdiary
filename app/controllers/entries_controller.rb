@@ -1,8 +1,16 @@
 class EntriesController < ApplicationController
-  before_filter :force_auth
+  before_filter :authentication
+  before_filter :authorization, :except => [:index, :show]
 
-  def force_auth
-    redirect_to '/auth/bugzilla' unless current_user
+  def authentication
+    redirect_to auth_path('bugzilla') unless current_user
+  end
+
+  def authorization
+    @entry = Entry.find(params[:id])
+    if current_user != @entry.user 
+      redirect_to( entry_path(@entry), :notice => "Sorry, you can only modify your own entries.")
+    end
   end
 
   # GET /entries
@@ -55,11 +63,7 @@ class EntriesController < ApplicationController
   # GET /entries/1/edit
   def edit
     @entry = Entry.find(params[:id])
-
-    redirect_to( entry_path(@entry), :notice => "Sorry, you can only edit your own entries.") if @entry.user != current_user
-
     @multiline = true
-
   end
 
   # POST /entries
