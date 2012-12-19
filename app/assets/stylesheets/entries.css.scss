@@ -8,12 +8,12 @@ $os_darkgrey:        #444444;
 $os_blue1:           #006699;
 $os_blue2:           #3399CC;
 
-ul {
+ul.entries {
   list-style-type: none;
   padding: 0px;
   margin: 0 0 0 2em;
 
-  li {
+  li.entries {
     background-repeat: no-repeat;
     background-position: 0px 0px;
     padding-left: 24px;

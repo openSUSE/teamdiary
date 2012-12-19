@@ -7,6 +7,10 @@ class Entry < ActiveRecord::Base
   validates :user, :presence => true
   validates :content, :presence => true
 
+  def day
+    self.created_at.strftime("%F")
+  end
+
   private
     def default_color
       self.color ||= 'green'
