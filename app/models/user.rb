@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :entries
 
   def self.from_omniauth(auth)
+    logger.debug "omniauth #{auth.inspect}"
     User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || create_with_omniauth(auth)
   end
 
