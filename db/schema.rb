@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121218202530) do
+ActiveRecord::Schema.define(:version => 20121220130132) do
 
   create_table "entries", :force => true do |t|
-    t.integer  "user_id"
     t.text     "content"
     t.string   "color"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   add_index "entries", ["created_at"], :name => "index_entries_on_created_at"
@@ -27,8 +27,9 @@ ActiveRecord::Schema.define(:version => 20121218202530) do
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "confirmed",  :default => false
   end
 
 end

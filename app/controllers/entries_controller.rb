@@ -1,9 +1,10 @@
 class EntriesController < ApplicationController
   before_filter :authentication
-  before_filter :authorization, only => [:update, :destroy, :edit]
+  before_filter :authorization, :only => [:update, :destroy, :edit]
 
   def authentication
     redirect_to auth_path('bugzilla') unless current_user
+    redirect_to unconfirmed_path unless current_user.confirmed?
   end
 
   def authorization

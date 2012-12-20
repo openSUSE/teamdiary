@@ -55,6 +55,7 @@ Teamdiary::Application.routes.draw do
   match '/auth/:provider', to: lambda{|env| [404, {}, ["Not Found"]]}, as: 'auth'
   match "/auth/:provider/callback" => "sessions#create"
   match "/auth/failure" => "sessions#failure"
+  match "/unconfirmed" => "sessions#unconfirmed"
   match "/signout" => "sessions#destroy", :as => :signout
 
   # See how all your routes lay out with "rake routes"
