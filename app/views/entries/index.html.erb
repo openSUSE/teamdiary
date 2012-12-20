@@ -24,7 +24,7 @@ end
 # Display currently selected month
 %> <%= @limit_date.strftime('%B %Y') %> <%
 
-# Diplay past months
+# Display past months
 for i in 1..(total-before) do
    i_date = @limit_date - (i).months
    %> <%= link_to(i_date.strftime('%B %Y'), entries_path(:month => i_date.month, :year => i_date.year)) %> <%
@@ -43,10 +43,12 @@ end
 <ul class='entries'>
    <% entries.sort_by(&:created_at).reverse.each do |entry| %>
      <li class="<%= entry.color %> entries">
-       <%= display_entry entry -%>
-       <%= content_tag(:span, class: "tools", data: { entry: entry.id }) do -%>
-         <%= entry_path.gsub('REPLACE', entry.id.to_s).html_safe  %>
-       <% end -%>
+       <%= display_entry entry %>
+       <%= if entry.user == current_user
+           content_tag(:span, class: "tools", data: { entry: entry.id }) do
+             entry_path.gsub('REPLACE', entry.id.to_s).html_safe
+         end
+       end %>
      </li>
    <% end %>
 </ul>
