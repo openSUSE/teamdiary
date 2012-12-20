@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
   before_filter :authentication
-  before_filter :authorization, :except => [:index, :show]
+  before_filter :authorization, only => [:update, :destroy, :edit]
 
   def authentication
     redirect_to auth_path('bugzilla') unless current_user
@@ -62,7 +62,6 @@ class EntriesController < ApplicationController
 
   # GET /entries/1/edit
   def edit
-    @entry = Entry.find(params[:id])
     @multiline = true
   end
 
@@ -86,8 +85,6 @@ class EntriesController < ApplicationController
   # PUT /entries/1
   # PUT /entries/1.json
   def update
-    @entry = Entry.find(params[:id])
-
     respond_to do |format|
       if @entry.update_attributes(params[:entry])
         format.html { redirect_to entries_url, :notice => 'Entry was successfully updated.' }
@@ -102,7 +99,6 @@ class EntriesController < ApplicationController
   # DELETE /entries/1
   # DELETE /entries/1.json
   def destroy
-    @entry = Entry.find(params[:id])
     @entry.destroy
 
     respond_to do |format|
