@@ -26,7 +26,7 @@ module EntriesHelper
        if /#/ =~ text
          # Make bnc# and fate# work
          text.gsub!(/bnc#([0-9]+)/, '<a href="https://bugzilla.novell.com/show_bug.cgi?id=\1" target="_blank">bnc#\1</a>')
-         text.gsub!(/fate#([0-9]+)/, '<a href="https://fate.suse.com/\1" target="_blank">bnc#\1</a>')
+         text.gsub!(/fate#([0-9]+)/, '<a href="https://fate.suse.com/\1" target="_blank">fate#\1</a>')
          text.gsub!(/#task/, '<span style="color: red">#task</span>')
        end
        text
